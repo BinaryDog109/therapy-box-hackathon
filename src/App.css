@@ -1,38 +1,25 @@
+html {
+  min-height: 100%;
+}
+:root{
+  --h2-fs:clamp(1.5rem, 6vw, 3rem);
+  --body-big-fs:clamp(1.2rem, 3vw, 1.5rem);
+  --body-fs:clamp(1rem, 3vw, 1.2rem);
+  --button-color: rgb(255,230,94)
+}
+body {
+  background-image: url('/public/assets/Background.png');
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  font-family: 'Open Sans', sans-serif;
+  color: white;
+}
 .App {
   text-align: center;
 }
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+h2 {
+  font-weight: 600;
+  font-size: var(--h2-fs)
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
