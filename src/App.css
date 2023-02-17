@@ -1,6 +1,3 @@
-html {
-  min-height: 100%;
-}
 :root{
   --h2-fs:clamp(1.5rem, 6vw, 3rem);
   --body-big-fs:clamp(1.2rem, 3vw, 1.5rem);
@@ -17,6 +14,9 @@ body {
 }
 .App {
   text-align: center;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
 }
 h2 {
   font-weight: 600;
