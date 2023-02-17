@@ -6,11 +6,13 @@
 }
 .inputs {
     display: flex;
+    gap: 3rem;
     flex-wrap: wrap;
     justify-content: space-around;
     width: 100%;
     max-width: 900px;
 }
+
 .inputs input{
     background: rgba(0, 0, 0, 0);
     border: none;
@@ -40,6 +42,12 @@ button[type='submit'] {
     margin-bottom: 2em;
     font-size: var(--body-big-fs);
     font-weight: 500;
+}
+/* Media query that moves up the sign up text when viewed in long screen */
+@media (max-aspect-ratio:1/2) {
+    .hints{
+        margin-top: 2em;
+    }
 }
 .hints a {
     color: var(--button-color);
