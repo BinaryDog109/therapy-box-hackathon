@@ -1,0 +1,19 @@
+.container {
+    color: black;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    align-content: center;
+    flex-grow: 1;
+}
+.container img {
+    height: 50px;
+}
+.celsius, .location {
+    font-weight: 500;
+}
+.location {
+    grid-row: span 1;
+    grid-column: span 2;
+    font-size: var(--body-big-fs);
+}
