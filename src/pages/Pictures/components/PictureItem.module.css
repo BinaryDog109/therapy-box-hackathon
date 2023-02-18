@@ -1,0 +1,16 @@
+.item {
+    border: 2px solid var(--button-color);
+    border-radius: 5px;
+    background-color: white;
+    display: grid;
+    place-items: center;
+}
+.title {
+    font-weight: 500;
+    color: black;
+    background-color: var(--button-color);
+    padding: .5em 0;
+}
+.addButtonImage {
+    width: 50%;
+}

@@ -4,6 +4,7 @@ import { SignupPage } from './pages/Login/SignupPage';
 import { TasksPage } from './pages/Tasks/TasksPage';
 import { NewsPage } from './pages/News/NewsPage';
 import { SportsPage } from './pages/Sports/SportsPage';
+import { PicturesPage } from './pages/Pictures/PicturesPage';
 function App() {
   return (
     <div className="App">
@@ -12,7 +13,8 @@ function App() {
       {/* <SignupPage/> */}
       {/* <TasksPage /> */}
       {/* <NewsPage /> */}
-      <SportsPage />
+      {/* <SportsPage /> */}
+      <PicturesPage />
     </div>
   );
 }

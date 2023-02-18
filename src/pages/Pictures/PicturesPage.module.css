@@ -1,0 +1,19 @@
+.container {
+    /* Set up max grid columns and calculate max grid item width so that we can apply responsive grid properties */
+    --grid-gap-size:3em;
+    --grid-item-min-width:200px;
+    --grid-column-num:3;
+    --grid-gap-num:calc(var(--grid-column-num) - 1);
+    --grid-total-gap:calc(var(--grid-gap-num) * var(--grid-gap-size));
+    --grid-item-max-width:calc((100% - var(--grid-total-gap)) / var(--grid-column-num));
+
+    width: 90%;
+    max-width: 700px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(max(var(--grid-item-min-width), var(--grid-item-max-width)),1fr));
+    grid-gap: var(--grid-gap-size);
+    grid-auto-rows: 150px;
+    font-family: inherit;
+}
+
