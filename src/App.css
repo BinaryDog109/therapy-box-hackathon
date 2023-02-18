@@ -1,5 +1,6 @@
 :root{
   --h2-fs:clamp(1.5rem, 6vw, 3rem);
+  --h3-fs:clamp(1.4rem, 6vw, 2.5rem);
   --body-big-fs:clamp(1.2rem, 3vw, 1.5rem);
   --body-fs:clamp(1rem, 3vw, 1.2rem);
   --button-color: rgb(255,230,94)
@@ -25,5 +26,9 @@ h2 {
 h2.left-position{
   text-align: left;
   margin-left: 1em;
+}
+h3 {
+  font-size: var(--h3-fs);
+  margin-bottom: .5em;
 }
 

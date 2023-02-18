@@ -1,0 +1,17 @@
+.container {
+    width: 90%;
+    max-width: 800px;
+    margin: 0 auto;
+}
+.image-container {
+    width: 60%;
+    max-width: 500px;
+    margin: 0 auto;
+    margin-top: .5em;
+    min-height: 200px;
+    background-color: white;
+    border: 2px solid var(--button-color);
+}
+.article {
+    text-align: initial;
+}
