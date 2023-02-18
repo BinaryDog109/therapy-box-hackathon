@@ -1,0 +1,29 @@
+.container {
+    width: 80%;
+    max-width: 800px;
+    margin: 0 auto;
+}
+.container input {
+    border:none;
+    outline: none;
+    background-color: transparent;
+    font-size: var(--h3-fs);
+    font-family: inherit;
+    padding: 0;
+    color: white;
+    border-bottom: 2px solid white;
+    width: 50%;
+    min-width: 160px;
+    max-width: 500px;
+}
+.container input::placeholder {
+    color: white;
+}
+.team-list {
+    list-style: none;
+    display: grid;
+    row-gap: .2em;
+    padding: 0;
+    text-align: initial;
+    font-size: var(--body-fs);
+}
