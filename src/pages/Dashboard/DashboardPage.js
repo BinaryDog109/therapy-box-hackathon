@@ -1,16 +1,25 @@
-import { useGeoWeather } from "../../hooks/useGeo";
+import { Route, Switch } from "react-router-dom";
+import { useRSS } from "../../hooks/useRSS";
+import { SportsPage } from "../Sports/SportsPage";
 import { DashboardItem } from "./components/DashboardItem";
+import { NewsInfo } from "./components/NewsInfo";
 import { WeatherInfo } from "./components/WeatherInfo";
 import styles from "./DashboardPage.module.css";
+
 export const DashboardPage = ({ name = "" }) => {
+  const [feed, error] = useRSS(
+    "https://api.rss2json.com/v1/api.json?rss_url=http%3A%2F%2Ffeeds.bbci.co.uk%2Fnews%2Frss.xml"
+  );
   return (
     <>
       <h2>Good day {name}</h2>
       <div className={styles["container"]}>
         <DashboardItem title={"Weather"}>
-            <WeatherInfo/>
+          <WeatherInfo />
         </DashboardItem>
-        <DashboardItem title="News" />
+        <DashboardItem title="News">
+          <NewsInfo news={feed} error={error} />
+        </DashboardItem>
         <DashboardItem title="Sports" />
         <DashboardItem title="Photos" />
         <DashboardItem title="Tasks" />

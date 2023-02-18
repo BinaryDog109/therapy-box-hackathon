@@ -10,7 +10,10 @@ export const WeatherInfo = () => {
   const temperature = weatherData ? weatherData.main.temp : "";
   const location = weatherData ? weatherData.name : "";
   const weatherType = weatherData ? weatherData.weather[0].main : "";
-  if (error) console.error(error);
+  if (error) {
+    console.error(error);
+    return <p>{error}</p>
+  }
   return (
     <div className={styles["container"]}>
       {!weatherData ? (

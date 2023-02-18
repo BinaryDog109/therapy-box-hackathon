@@ -1,0 +1,12 @@
+.container {
+    flex-grow: 1;
+    display: grid;
+    place-items: center;
+}
+.headline {
+    text-align: initial;
+    font-size: 1em;
+    font-weight: 500;
+    padding: 1em;
+    color: black;
+}
