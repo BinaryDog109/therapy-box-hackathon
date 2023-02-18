@@ -1,0 +1,52 @@
+.task-item {
+    display: flex;
+}
+.task-item span {
+    border-bottom: 2px solid white;
+    flex-grow: 1;
+}
+.task-item label {
+    margin-left: 1em;
+    position: relative;
+}
+.task-item input[type='checkbox'] {
+    margin: 0;
+    padding: 0;
+    /* Hiding the default checkbox so that we can show the customised one */
+    opacity: 0; 
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+/* Customed checkbox */
+.task-item label::before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 2em;
+    height: 2em;   
+    border: 2px solid var(--button-color);
+    border-radius: 5px;
+    background-color: white;
+}
+/* Customed checkmark */
+.task-item label .checkmark {
+    position: absolute;
+    display: none;
+    top: 0;
+    width: 3em;
+    height: .5em;
+    transform: translateY(-100%) rotate(-45deg);
+    border-left: 2px solid gray;
+    border-bottom: 2px solid gray;
+}
+/* Adding check/uncheck styling */
+.task-item input[type='checkbox']:checked + .checkmark {
+    display: block;
+}
+/* Styling focus and hover states */
+.task-item label:hover::before, 
+.task-item label:focus ::before{
+    box-shadow: inset 0 0 8px var(--button-color);
+}

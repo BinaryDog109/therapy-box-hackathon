@@ -5,7 +5,8 @@
     flex-grow: 1;
     gap: 2em;
 }
-/* .inputs > .row > input */
+/* Inputs styling */
+/* The hierarchy: .inputs > .row > input */
 .inputs {
     display: flex;
     flex-direction: column;
@@ -62,6 +63,7 @@
     border-radius: 5px;
     background-color: #55555562;
 }
+/* End of inputs styling */
 button[type='submit'] {
     background-color: var(--button-color);
     border: none;

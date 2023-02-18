@@ -30,8 +30,9 @@ export const SignupPage = () => {
       <div className={styles["upload-picture"]}>
         <label htmlFor="avatar">
             Add picture
+            <input type="file" accept="image/gif, image/jpeg, image/png" id="avatar" name="avatar" />
         </label>
-        <input type="file" accept="image/gif, image/jpeg, image/png" id="avatar" name="avatar" />
+        
       </div>
       <button className={styles["register-button"]} type="submit">Register</button>
     </div>
