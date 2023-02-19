@@ -14,7 +14,7 @@ export const TasksPage = () => {
   const [showNewTask, setShowNewTask] = useState(false);
   const [newTaskTitle, setNewTaskTitle] = useState("");
   // The following useEffects are to check whether the add or update operation has been successful
-  // And react based on the status
+  // and react based on its status
   useEffect(() => {
     if (addOperationStatus.success) {
       console.log("New task added:", addOperationStatus.document);
@@ -50,6 +50,9 @@ export const TasksPage = () => {
   };
   const toggleTask = (id, completed) => {
     updateDoc(id, { completed });
+  };
+  const updateTaskTitle = (id, title) => {
+    updateDoc(id, { title });
   };
   const handleAddNewTask = () => {
     const title = newTaskTitle || "New Task";
@@ -98,6 +101,7 @@ export const TasksPage = () => {
               <TaskItem
                 deleteTask={deleteTask}
                 toggleTask={toggleTask}
+                updateTaskTitle={updateTaskTitle}
                 key={task.id}
                 {...task}
               />
@@ -105,7 +109,7 @@ export const TasksPage = () => {
         </ul>
         <button
           onClick={() => {
-            setShowNewTask(true);
+            setShowNewTask(!showNewTask);
           }}
           className={styles["add-btn"]}
         >

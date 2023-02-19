@@ -26,6 +26,17 @@
     border-bottom: 2px solid white;
     flex-grow: 1;
 }
+.edit-input {
+    border:none;
+    outline: none;
+    background-color: transparent;
+    font-size: inherit;
+    font-family: inherit;
+    padding: 0;
+    color: white;
+    border-bottom: 2px solid white;
+    width: 100%;
+}
 .task-item label {
     margin-left: 3em;
     position: relative;
@@ -87,7 +98,6 @@
     width:2em;
     height: 2em;
     color: white;
-    /* border: 1px solid var(--button-color); */
     border-radius: 50% 50%;
     cursor: pointer;
     position: relative;
