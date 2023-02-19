@@ -64,7 +64,7 @@
     transform: translateX(-100%);
 }
 /* Customed checkmark */
-.task-item label .checkmark {
+.task-item .checkmark {
     position: absolute;
     display: none;
     top: 0;

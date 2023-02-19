@@ -3,6 +3,7 @@ import { useRSS } from "../../hooks/useRSS";
 import { SportsPage } from "../Sports/SportsPage";
 import { DashboardItem } from "./components/DashboardItem";
 import { NewsInfo } from "./components/NewsInfo";
+import { TasksInfo } from "./components/TasksInfo";
 import { WeatherInfo } from "./components/WeatherInfo";
 import styles from "./DashboardPage.module.css";
 
@@ -20,7 +21,9 @@ export const DashboardPage = ({ name = "" }) => {
         </DashboardItem>
         <DashboardItem title="Sports" path="/sports" />
         <DashboardItem title="Photos" path="/photos" />
-        <DashboardItem title="Tasks" path="/tasks" />
+        <DashboardItem title="Tasks" path="/tasks">
+          <TasksInfo />
+        </DashboardItem>
         <DashboardItem title="Clothes" disableClick />
       </div>
     </>

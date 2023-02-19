@@ -2,12 +2,12 @@ import { useEffect, useState } from "react";
 import { TaskItem } from "./components/TaskItem";
 import styles from "./TaskPage.module.css";
 import itemStyles from "./components/TaskItem.module.css";
-import { useCollection } from "../../hooks/useCollection";
+import { useTasksContext } from "../../hooks/useTasksContext";
 import { useAddDocument } from "../../hooks/useAddDocument";
 import { useUpdateDocument } from "../../hooks/useUpdateDocument";
 import { useDeleteDocument } from "../../hooks/useDeleteDocument";
 export const TasksPage = () => {
-  const [tasks, error] = useCollection("Tasks", ["createdAt", "desc"]);
+  const { tasks, error } = useTasksContext();
   const [addOperationStatus, addDoc] = useAddDocument("Tasks");
   const [updateOperationStatus, updateDoc] = useUpdateDocument("Tasks");
   const [deleteOperationStatus, deleteDoc] = useDeleteDocument("Tasks");
