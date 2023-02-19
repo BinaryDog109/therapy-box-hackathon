@@ -23,5 +23,5 @@ export const useRSS = (url) => {
     };
   }, [url]);
 
-  return [feed, error];
+  return [feed, setFeed, error];
 };

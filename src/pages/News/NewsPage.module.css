@@ -11,6 +11,28 @@
     min-height: 200px;
     background-color: white;
     border: 2px solid var(--button-color);
+    display: grid;
+    place-items: center;
+    /* For placing the absolute pseudo element */
+    position: relative;
+}
+/* Create a hovering effect for the news image */
+.image-container a::before {
+    content: 'Click to visit';
+    display: grid;
+    place-items: center;
+    color: white;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(128, 128, 128, 0.5);
+    opacity: 0;
+    transition: opacity 250ms;
+}
+.image-container:hover a::before, .image-container:focus a::before {
+    opacity: 1;
 }
 .article {
     text-align: initial;
