@@ -38,7 +38,7 @@
     top: 0;
     width: 3em;
     height: .5em;
-    transform: translateY(-100%) rotate(-45deg);
+    transform: translate(-70%,-50%) rotate(-45deg);
     border-left: 2px solid gray;
     border-bottom: 2px solid gray;
 }

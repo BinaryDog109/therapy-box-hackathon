@@ -14,16 +14,16 @@ export const DashboardPage = ({ name = "" }) => {
     <>
       <h2>Good day {name}</h2>
       <div className={styles["container"]}>
-        <DashboardItem title={"Weather"}>
+        <DashboardItem disableClick title={"Weather"}>
           <WeatherInfo />
         </DashboardItem>
-        <DashboardItem title="News">
+        <DashboardItem title="News" path="/news">
           <NewsInfo news={feed} error={error} />
         </DashboardItem>
-        <DashboardItem title="Sports" />
-        <DashboardItem title="Photos" />
-        <DashboardItem title="Tasks" />
-        <DashboardItem title="Clothes" />
+        <DashboardItem title="Sports" path="/sports" />
+        <DashboardItem title="Photos" path="/photos" />
+        <DashboardItem title="Tasks" path="/tasks" />
+        <DashboardItem title="Clothes" disableClick />
       </div>
     </>
   );
