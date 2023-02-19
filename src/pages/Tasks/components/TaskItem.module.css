@@ -1,6 +1,27 @@
 .task-item {
     display: flex;
 }
+/* Styling for the new input box after hitting the add button */
+.new-task {
+    height: 2em;
+    outline: 2px dashed white;
+    padding: 1em;
+    align-items: center;
+}
+.new-task input {
+    border:none;
+    outline: none;
+    background-color: transparent;
+    font-size: var(--body-fs);
+    font-family: inherit;
+    padding: 0;
+    color: white;
+    width: 100%;
+    height: 100%;
+}
+.new-task input::placeholder {
+    color: white;
+}
 .task-item span {
     border-bottom: 2px solid white;
     flex-grow: 1;
@@ -50,4 +71,57 @@
 .task-item label:hover::before, 
 .task-item label:focus ::before{
     box-shadow: inset 0 0 8px var(--button-color);
+}
+.buttons {
+    order: -1;
+    margin-right: 1em;
+}
+.vertical-button-group {
+    display: flex;
+    flex-direction: column;
+    gap: .5em;
+    margin-right: 1em;
+}
+.delete-button, .confirm-button {
+    border: none;
+    width:2em;
+    height: 2em;
+    color: white;
+    /* border: 1px solid var(--button-color); */
+    border-radius: 50% 50%;
+    cursor: pointer;
+    position: relative;
+    opacity: 0.5;
+    transition: opacity 250ms;
+}
+.delete-button {
+    background-color:red;
+}
+.confirm-button {
+    background-color:forestgreen;
+}
+.delete-button:hover, .confirm-button:hover{
+    opacity: 1;
+}
+.delete-button::before{
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    width: 50%;
+    height: 2px;
+    background-color: white;    
+}
+.confirm-button::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 10px;
+    height: 5px;
+    transform: translate(-50%,-50%) rotate(-45deg);
+    transform-origin: center;
+    border-left: 2px solid white;
+    border-bottom: 2px solid white;   
 }

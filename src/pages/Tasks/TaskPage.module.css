@@ -11,8 +11,10 @@
     display: grid;
     row-gap: 1.5em;
 }
-.add-btn {
+button.add-btn {
     border: none;
+    padding: 0;
+    margin: 0;
     background-color: transparent;
     cursor: pointer;
     width: 2.5em;

@@ -1,12 +1,33 @@
 import styles from "./TaskItem.module.css";
-export const TaskItem = () => {
+export const TaskItem = ({ id, title, completed, toggleTask, deleteTask }) => {
   return (
     <li className={styles["task-item"]}>
-      <span>Task1</span>
+      <span
+        style={{
+          textDecorationLine: completed ? "line-through" : "none",
+          textDecorationColor: "gray",
+        }}
+      >
+        {title}
+      </span>
       <label>
-        <input type="checkbox" />
+        <input
+          onChange={() => {
+            toggleTask(id, !completed);
+          }}
+          checked={completed}
+          type="checkbox"
+        />
         <span className={styles["checkmark"]}></span>
       </label>
+      <div className={styles["buttons"]}>
+        <button
+          onClick={() => {
+            deleteTask(id);
+          }}
+          className={styles["delete-button"]}
+        ></button>
+      </div>
     </li>
   );
 };
