@@ -1,6 +1,8 @@
 import styles from "./LoginSignupPage.module.css";
 export const LoginPage = () => {
   return (
+    <>
+    <h2>Login</h2>
     <div className={styles["container"]}>
       <div className={styles["inputs"]}>
         <div className={styles[['row']]}>
@@ -20,8 +22,8 @@ export const LoginPage = () => {
       </div>
       <button type="submit">Login</button>
       <p className={styles["hints"]}>
-        New to the Hackathon? <a href="#">Sign up</a>
+        New to the Hackathon? <a href="/signup">Sign up</a>
       </p>
-    </div>
+    </div></>
   );
 };

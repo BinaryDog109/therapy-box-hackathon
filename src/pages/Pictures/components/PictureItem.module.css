@@ -5,6 +5,14 @@
     display: grid;
     place-items: center;
 }
+.item label {
+    /* Set to stretch because I want more clickable area */
+    justify-self: stretch;
+    align-self: stretch;
+    display: grid;
+    place-items: center;
+    cursor: pointer;
+}
 .addButtonImage {
     max-height: 100px;
 }

@@ -1,9 +1,17 @@
-.container {
+.container form {
     display: flex;
+    width: 100%;
+    flex-grow: 1;
     flex-direction: column;
     align-items: center;
-    flex-grow: 1;
     gap: 2em;
+}
+.hints-error {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    color: white;
+    background-color: red;
 }
 /* Inputs styling */
 /* The hierarchy: .inputs > .row > input */
