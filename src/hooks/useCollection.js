@@ -8,9 +8,13 @@ export const useCollection = (name, _query, _orderBy) => {
   const orderBy = useRef(_orderBy).current;
   const query = useRef(_query).current;
   useEffect(() => {
-    const store = orderBy
-      ? firestore.collection(name).where(...query).orderBy(...orderBy)
-      : firestore.collection(name);
+    const store =
+      orderBy && query
+        ? firestore
+            .collection(name)
+            .where(...query)
+            .orderBy(...orderBy)
+        : firestore.collection(name);
     const unsub = store.onSnapshot(
       (snapShot) => {
         if (snapShot.empty) {
@@ -31,7 +35,7 @@ export const useCollection = (name, _query, _orderBy) => {
       }
     );
     return () => unsub();
-  }, [name, query,orderBy]);
+  }, [name, query, orderBy]);
 
   return [data, error];
 };

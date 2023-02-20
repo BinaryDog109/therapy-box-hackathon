@@ -16,6 +16,7 @@ import { useAuthContext } from "./hooks/useAuthContext";
 import { useLogout } from "./hooks/useLogout";
 import { NewsContextProvider } from "./context/NewsContext";
 import { TasksContextProvider } from "./context/TasksContext";
+import { PhotosContextProvider } from "./context/PhotosContext";
 // Note: Moved News and Tasks Provider here so that they can get authenticated user object
 function App() {
   const { user, authChecked } = useAuthContext();
@@ -27,34 +28,36 @@ function App() {
     authChecked && (
       <NewsContextProvider>
         <TasksContextProvider>
-          <Router>
-            <div className="App">
-              {user && <LogoutButton />}
-              <Switch>
-                <Route exact path={"/"}>
-                  {checkUserBeforeRouteTo(DashboardPage)}
-                </Route>
-                <Route exact path={"/login"}>
-                  {!user ? <LoginPage /> : <Redirect to={"/"} />}
-                </Route>
-                <Route exact path={"/signup"}>
-                  {!user ? <SignupPage /> : <Redirect to={"/"} />}
-                </Route>
-                <Route exact path={"/sports"}>
-                  {checkUserBeforeRouteTo(SportsPage)}
-                </Route>
-                <Route exact path={"/news"}>
-                  {checkUserBeforeRouteTo(NewsPage)}
-                </Route>
-                <Route exact path={"/photos"}>
-                  {checkUserBeforeRouteTo(PicturesPage)}
-                </Route>
-                <Route exact path={"/tasks"}>
-                  {checkUserBeforeRouteTo(TasksPage)}
-                </Route>
-              </Switch>
-            </div>
-          </Router>
+          <PhotosContextProvider>
+            <Router>
+              <div className="App">
+                {user && <LogoutButton />}
+                <Switch>
+                  <Route exact path={"/"}>
+                    {checkUserBeforeRouteTo(DashboardPage)}
+                  </Route>
+                  <Route exact path={"/login"}>
+                    {!user ? <LoginPage /> : <Redirect to={"/"} />}
+                  </Route>
+                  <Route exact path={"/signup"}>
+                    {!user ? <SignupPage /> : <Redirect to={"/"} />}
+                  </Route>
+                  <Route exact path={"/sports"}>
+                    {checkUserBeforeRouteTo(SportsPage)}
+                  </Route>
+                  <Route exact path={"/news"}>
+                    {checkUserBeforeRouteTo(NewsPage)}
+                  </Route>
+                  <Route exact path={"/photos"}>
+                    {checkUserBeforeRouteTo(PicturesPage)}
+                  </Route>
+                  <Route exact path={"/tasks"}>
+                    {checkUserBeforeRouteTo(TasksPage)}
+                  </Route>
+                </Switch>
+              </div>
+            </Router>
+          </PhotosContextProvider>
         </TasksContextProvider>
       </NewsContextProvider>
     )
