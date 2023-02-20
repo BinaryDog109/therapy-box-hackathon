@@ -6,18 +6,43 @@
   --button-color: rgb(255,230,94)
 }
 body {
-  background-image: url('/public/assets/Background.png');
-  background-position: center;
-  background-size: cover;
-  background-repeat: no-repeat;
+  
   font-family: 'Open Sans', sans-serif;
   color: white;
 }
 .App {
+  background-image: url('/public/assets/Background.png');
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
   text-align: center;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
+}
+.logout-button {
+  position: absolute;
+  border: none;
+  background: none;
+  cursor: pointer;
+  font-family: inherit;
+  padding: 0;
+  top: 0;
+  left: 0;
+  width: 50px;
+  height: 50px;
+  border-radius: 0 0 50px 0;
+  background-color: var(--button-color);
+  transition: transform 250ms;
+}
+.logout-button > *{
+  position: absolute;
+  top: 50%;
+  left: 5px;
+  transform: translateY(-75%);
+}
+.logout-button:hover {
+  transform: scale(1.2);
 }
 h2 {
   font-weight: 600;

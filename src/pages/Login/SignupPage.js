@@ -16,7 +16,7 @@ export const SignupPage = () => {
   const handleSubmit = (event) => {
     event.preventDefault();
     const { username, email, password, confirmPassword } = userInfo;
-
+    if (!username || !email || !password || !confirmPassword) return;
     if (password !== confirmPassword) {
       setUserInfo((prev) => ({ ...prev, confirmPassword: "" }));
       setArePasswordsMatch(false);
