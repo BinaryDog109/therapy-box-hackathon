@@ -1,21 +1,39 @@
-import { useState } from "react";
-import { fireAuth } from "../firebase/config";
+import { useEffect, useState } from "react";
+import { fireAuth, fireStorage } from "../firebase/config";
 import { useAuthContext } from "./useAuthContext";
 export const useSignUp = () => {
   const { user, setUser } = useAuthContext();
   const [error, setError] = useState(null);
-  const signUp = async (email, password, userName, imageUrl) => {
+  const [isCancelled, setIsCancelled] = useState(false);
+  useEffect(() => {
+    return () => setIsCancelled(true);
+  }, []);
+  const signUp = async (email, password, userName, avatar) => {
     try {
       const res = await fireAuth.createUserWithEmailAndPassword(
         email,
         password
       );
+      let avatarUrl = "";
+      if (avatar) {
+        // Upload user avatar if provided
+        const metadata = {
+          contentType: "image/jpeg",
+        };
+        const ref = fireStorage
+          .ref()
+          .child(`avatar/${res.user.uid}/${avatar.name}`);
+        await ref.put(avatar, metadata);
+        avatarUrl = await ref.getDownloadURL();
+      }
       await res.user.updateProfile({
         displayName: userName,
-        photoURL: imageUrl || "",
+        photoURL: avatarUrl,
       });
 
-      setUser(res.user);
+      if (!isCancelled) {
+        setUser(res.user);
+      }
     } catch (error) {
       setError(error.message);
     }

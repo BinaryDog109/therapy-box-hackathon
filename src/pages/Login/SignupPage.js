@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useMemo, useState } from "react";
 import { useSignUp } from "../../hooks/useSignUp";
 import styles from "./LoginSignupPage.module.css";
 const initialUserInfo = {
@@ -6,29 +6,41 @@ const initialUserInfo = {
   email: "",
   password: "",
   confirmPassword: "",
-  avatarLink: "",
 };
 export const SignupPage = () => {
   const [signUp, user, error] = useSignUp();
   const [userInfo, setUserInfo] = useState({ ...initialUserInfo });
+  const [avatar, setAvatar] = useState(null);
   const [arePasswordsMatch, setArePasswordsMatch] = useState(true);
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    const { username, email, password, confirmPassword, avatarLink } = userInfo;
-    setUserInfo((prev) => ({ ...prev, confirmPassword: "" }));
+    const { username, email, password, confirmPassword} = userInfo;
+
     if (password !== confirmPassword) {
+      setUserInfo((prev) => ({ ...prev, confirmPassword: "" }));
       setArePasswordsMatch(false);
     } else {
       setArePasswordsMatch(true);
       setUserInfo({ ...initialUserInfo });
-      signUp(email, password, username);
+
+      signUp(email, password, username, avatar);
+      setAvatar(null)
     }
+  };
+  const handleAvatarSelected = (event) => {
+    const file = event.target.files[0];
+    if (!file || file.type.indexOf("image") === -1) {
+      console.error("Please upload an image!");
+      return;
+    }
+    setAvatar(file);
   };
   const handleChange = (event) => {
     const { value, name } = event.target;
     setUserInfo((prev) => ({ ...prev, [name]: value }));
   };
+  console.log({ user });
   return (
     <>
       <h2>Sign Up</h2>
@@ -49,6 +61,7 @@ export const SignupPage = () => {
                 id="username"
                 value={userInfo.username}
                 onChange={handleChange}
+                required
               />
               <input
                 placeholder="Email"
@@ -57,6 +70,7 @@ export const SignupPage = () => {
                 id="email"
                 value={userInfo.email}
                 onChange={handleChange}
+                required
               />
             </div>
             <div className={styles["row"]}>
@@ -67,6 +81,7 @@ export const SignupPage = () => {
                 id="password"
                 value={userInfo.password}
                 onChange={handleChange}
+                required
               />
               <input
                 placeholder="Confirm Password"
@@ -75,20 +90,38 @@ export const SignupPage = () => {
                 id="confirmPassword"
                 value={userInfo.confirmPassword}
                 onChange={handleChange}
+                required
               />
             </div>
           </div>
-          <div className={styles["upload-picture"]}>
-            <label htmlFor="avatar">
-              Add picture
-              <input
-                type="file"
-                accept="image/gif, image/jpeg, image/png"
-                id="avatar"
-                name="avatar"
-              />
-            </label>
-          </div>
+          {/* Use usememo to prevent flashing on the preview */}
+          {useMemo(
+            () => (
+              <div
+                style={{
+                  backgroundImage: avatar
+                    ? `url(${URL.createObjectURL(avatar)})`
+                    : "none",
+                  backgroundSize: "contain",
+                }}
+                className={styles["upload-picture"]}
+              >
+                <label htmlFor="avatar">
+                  {avatar ? "" : `Add picture`}
+                  <input
+                    type="file"
+                    accept="image/gif, image/jpeg, image/png"
+                    id="avatar"
+                    name="avatar"
+                    onChange={handleAvatarSelected}
+                    required
+                  />
+                </label>
+              </div>
+            ),
+            [avatar]
+          )}
+
           <button className={styles["register-button"]} type="submit">
             Register
           </button>
