@@ -6,8 +6,8 @@ import { useTasksContext } from "../../hooks/useTasksContext";
 import { useAddDocument } from "../../hooks/useAddDocument";
 import { useUpdateDocument } from "../../hooks/useUpdateDocument";
 import { useDeleteDocument } from "../../hooks/useDeleteDocument";
-export const TasksPage = () => {
-  const { tasks, error } = useTasksContext();
+export const TasksPage = () => {  
+  const { tasks, user, error } = useTasksContext();
   const [addOperationStatus, addDoc] = useAddDocument("Tasks");
   const [updateOperationStatus, updateDoc] = useUpdateDocument("Tasks");
   const [deleteOperationStatus, deleteDoc] = useDeleteDocument("Tasks");
@@ -56,7 +56,7 @@ export const TasksPage = () => {
   };
   const handleAddNewTask = () => {
     const title = newTaskTitle || "New Task";
-    const newTask = { title, completed: false };
+    const newTask = { title, completed: false, uid: user.uid };
     addDoc(newTask);
   };
   if (error) {

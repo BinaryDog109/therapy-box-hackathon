@@ -14,7 +14,9 @@ import {
 } from "react-router-dom";
 import { useAuthContext } from "./hooks/useAuthContext";
 import { useLogout } from "./hooks/useLogout";
-
+import { NewsContextProvider } from "./context/NewsContext";
+import { TasksContextProvider } from "./context/TasksContext";
+// Note: Moved News and Tasks Provider here so that they can get authenticated user object
 function App() {
   const { user, authChecked } = useAuthContext();
   const checkUserBeforeRouteTo = (TargetPage, props) => {
@@ -23,34 +25,38 @@ function App() {
 
   return (
     authChecked && (
-      <Router>
-        <div className="App">
-          {user && <LogoutButton />}
-          <Switch>
-            <Route exact path={"/"}>
-              {checkUserBeforeRouteTo(DashboardPage)}
-            </Route>
-            <Route exact path={"/login"}>
-              {!user ? <LoginPage /> : <Redirect to={"/"} />}
-            </Route>
-            <Route exact path={"/signup"}>
-              {!user ? <SignupPage /> : <Redirect to={"/"} />}
-            </Route>
-            <Route exact path={"/sports"}>
-              {checkUserBeforeRouteTo(SportsPage)}
-            </Route>
-            <Route exact path={"/news"}>
-              {checkUserBeforeRouteTo(NewsPage)}
-            </Route>
-            <Route exact path={"/photos"}>
-              {checkUserBeforeRouteTo(PicturesPage)}
-            </Route>
-            <Route exact path={"/tasks"}>
-              {checkUserBeforeRouteTo(TasksPage)}
-            </Route>
-          </Switch>
-        </div>
-      </Router>
+      <NewsContextProvider>
+        <TasksContextProvider>
+          <Router>
+            <div className="App">
+              {user && <LogoutButton />}
+              <Switch>
+                <Route exact path={"/"}>
+                  {checkUserBeforeRouteTo(DashboardPage)}
+                </Route>
+                <Route exact path={"/login"}>
+                  {!user ? <LoginPage /> : <Redirect to={"/"} />}
+                </Route>
+                <Route exact path={"/signup"}>
+                  {!user ? <SignupPage /> : <Redirect to={"/"} />}
+                </Route>
+                <Route exact path={"/sports"}>
+                  {checkUserBeforeRouteTo(SportsPage)}
+                </Route>
+                <Route exact path={"/news"}>
+                  {checkUserBeforeRouteTo(NewsPage)}
+                </Route>
+                <Route exact path={"/photos"}>
+                  {checkUserBeforeRouteTo(PicturesPage)}
+                </Route>
+                <Route exact path={"/tasks"}>
+                  {checkUserBeforeRouteTo(TasksPage)}
+                </Route>
+              </Switch>
+            </div>
+          </Router>
+        </TasksContextProvider>
+      </NewsContextProvider>
     )
   );
 }

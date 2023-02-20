@@ -1,14 +1,15 @@
 import { useEffect, useRef, useState } from "react";
 import { firestore } from "../firebase/config";
 
-export const useCollection = (name, _orderBy) => {
+export const useCollection = (name, _query, _orderBy) => {
   const [data, setData] = useState(null);
   const [error, setError] = useState(null);
   // Prevent infinite loop thanks to useRef
   const orderBy = useRef(_orderBy).current;
+  const query = useRef(_query).current;
   useEffect(() => {
     const store = orderBy
-      ? firestore.collection(name).orderBy(...orderBy)
+      ? firestore.collection(name).where(...query).orderBy(...orderBy)
       : firestore.collection(name);
     const unsub = store.onSnapshot(
       (snapShot) => {
@@ -30,7 +31,7 @@ export const useCollection = (name, _orderBy) => {
       }
     );
     return () => unsub();
-  }, [name,orderBy]);
+  }, [name, query,orderBy]);
 
   return [data, error];
 };
