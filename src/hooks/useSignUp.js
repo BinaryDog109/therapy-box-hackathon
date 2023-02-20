@@ -4,11 +4,13 @@ import { useAuthContext } from "./useAuthContext";
 export const useSignUp = () => {
   const { user, setUser } = useAuthContext();
   const [error, setError] = useState(null);
+  const [pending, setPending] = useState(false);
   const [isCancelled, setIsCancelled] = useState(false);
   useEffect(() => {
     return () => setIsCancelled(true);
   }, []);
   const signUp = async (email, password, userName, avatar) => {
+    setPending(true);
     try {
       const res = await fireAuth.createUserWithEmailAndPassword(
         email,
@@ -33,10 +35,14 @@ export const useSignUp = () => {
 
       if (!isCancelled) {
         setUser(res.user);
+        setPending(false);
       }
     } catch (error) {
-      setError(error.message);
+      if (!isCancelled) {
+        setError(error.message);
+        setPending(false);
+      }
     }
   };
-  return [signUp, user, error];
+  return [signUp, user, error, pending];
 };

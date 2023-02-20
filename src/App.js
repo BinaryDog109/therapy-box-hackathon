@@ -30,7 +30,7 @@ function App() {
             <LoginPage />
           </Route>
           <Route exact path={"/signup"}>
-            <SignupPage />
+            {!user? <SignupPage />:<Redirect to={"/"}/>}
           </Route>
           <Route exact path={"/sports"}>
             <SportsPage />

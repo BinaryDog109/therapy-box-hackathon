@@ -8,14 +8,14 @@ const initialUserInfo = {
   confirmPassword: "",
 };
 export const SignupPage = () => {
-  const [signUp, user, error] = useSignUp();
+  const [signUp, user, error, pending] = useSignUp();
   const [userInfo, setUserInfo] = useState({ ...initialUserInfo });
   const [avatar, setAvatar] = useState(null);
   const [arePasswordsMatch, setArePasswordsMatch] = useState(true);
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    const { username, email, password, confirmPassword} = userInfo;
+    const { username, email, password, confirmPassword } = userInfo;
 
     if (password !== confirmPassword) {
       setUserInfo((prev) => ({ ...prev, confirmPassword: "" }));
@@ -25,7 +25,7 @@ export const SignupPage = () => {
       setUserInfo({ ...initialUserInfo });
 
       signUp(email, password, username, avatar);
-      setAvatar(null)
+      setAvatar(null);
     }
   };
   const handleAvatarSelected = (event) => {
@@ -40,7 +40,6 @@ export const SignupPage = () => {
     const { value, name } = event.target;
     setUserInfo((prev) => ({ ...prev, [name]: value }));
   };
-  console.log({ user });
   return (
     <>
       <h2>Sign Up</h2>
@@ -122,7 +121,12 @@ export const SignupPage = () => {
             [avatar]
           )}
 
-          <button className={styles["register-button"]} type="submit">
+          <button
+            style={{ cursor: pending ? "none" : "pointer" }}
+            disabled={pending}
+            className={styles["register-button"]}
+            type="submit"
+          >
             Register
           </button>
         </form>
