@@ -17,9 +17,10 @@ import { useLogout } from "./hooks/useLogout";
 
 function App() {
   const { user, authChecked } = useAuthContext();
-  const checkUserBeforeRouteTo = (TargetPage) => {
-    return user ? TargetPage : <Redirect to={"/login"} />;
+  const checkUserBeforeRouteTo = (TargetPage, props) => {
+    return user ? <TargetPage {...props} /> : <Redirect to={"/login"} />;
   };
+
   return (
     authChecked && (
       <Router>
@@ -36,16 +37,16 @@ function App() {
               {!user ? <SignupPage /> : <Redirect to={"/"} />}
             </Route>
             <Route exact path={"/sports"}>
-              <SportsPage />
+              {checkUserBeforeRouteTo(SportsPage)}
             </Route>
             <Route exact path={"/news"}>
-              <NewsPage />
+              {checkUserBeforeRouteTo(NewsPage)}
             </Route>
             <Route exact path={"/photos"}>
-              <PicturesPage />
+              {checkUserBeforeRouteTo(PicturesPage)}
             </Route>
             <Route exact path={"/tasks"}>
-              <TasksPage />
+              {checkUserBeforeRouteTo(TasksPage)}
             </Route>
           </Switch>
         </div>
