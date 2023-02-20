@@ -2,8 +2,7 @@ import { useNewsContext } from "../../hooks/useNewsContext";
 import styles from "./NewsPage.module.css";
 export const NewsPage = () => {
   const { feed, setFeed, error } = useNewsContext();
-  console.log(feed);
-  return (
+  return feed && (
     <>
       <h2 className={`left-position`} style={{ position: "absolute" }}>
         News

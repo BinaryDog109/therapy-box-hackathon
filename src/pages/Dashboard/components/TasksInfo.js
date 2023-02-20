@@ -11,10 +11,20 @@ export const TasksInfo = () => {
         {topTasks &&
           topTasks.map((task) => (
             <li className={itemStyles["task-item"]} key={task.id}>
-              <span className={styles['title']}>{task.title}</span>
+              <span
+                style={{
+                  textDecorationLine: task.completed ? "line-through" : "none",
+                  textDecorationColor: "black",
+                }}
+                className={styles["title"]}
+              >
+                {task.title}
+              </span>
               <label>
                 <input defaultChecked={task.completed} type="checkbox" />
-                <span className={`${itemStyles["checkmark"]} ${styles['checkmark']} `}></span>
+                <span
+                  className={`${itemStyles["checkmark"]} ${styles["checkmark"]} `}
+                ></span>
               </label>
             </li>
           ))}

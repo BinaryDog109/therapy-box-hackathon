@@ -1,0 +1,21 @@
+.container {
+    flex-grow: 1;
+    display: grid;
+    place-items: center;
+    
+}
+.tool-tip {
+    position: absolute;
+    background-color: antiquewhite;
+    padding: .2em;
+    z-index: 2;
+    color: gray;
+}
+.container svg {
+    max-width: 100px;
+    transition: all 500ms;
+}
+.container:hover svg {
+    transform: rotate(180deg) scale(1.2);
+    /* max-width: 150px; */
+}
