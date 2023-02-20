@@ -1,0 +1,10 @@
+.container {
+    flex-grow: 1;
+    padding: .5em;
+    display: grid;
+    justify-content: center;
+    row-gap: .2em;
+    column-gap: 1em;
+    grid-template-columns: repeat(2, minmax(50px,200px));
+    grid-template-rows: repeat(2,50px);
+}

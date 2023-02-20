@@ -5,6 +5,7 @@ import { SportsPage } from "../Sports/SportsPage";
 import { ClothesPieChart } from "./components/ClothesPieChart";
 import { DashboardItem } from "./components/DashboardItem";
 import { NewsInfo } from "./components/NewsInfo";
+import { PhotosInfo } from "./components/PhotosInfo";
 import { TasksInfo } from "./components/TasksInfo";
 import { WeatherInfo } from "./components/WeatherInfo";
 import styles from "./DashboardPage.module.css";
@@ -22,7 +23,9 @@ export const DashboardPage = () => {
           <NewsInfo />
         </DashboardItem>
         <DashboardItem title="Sports" path="/sports" />
-        <DashboardItem title="Photos" path="/photos" />
+        <DashboardItem title="Photos" path="/photos">
+          <PhotosInfo />
+        </DashboardItem>
         <DashboardItem title="Tasks" path="/tasks">
           <TasksInfo />
         </DashboardItem>

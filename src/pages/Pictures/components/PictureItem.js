@@ -1,5 +1,3 @@
-import { useEffect, useState } from "react";
-import { useDeleteDocument } from "../../../hooks/useDeleteDocument";
 import styles from "./PictureItem.module.css";
 export const PictureItem = ({ setOpenOverlay, id, imageUrl, deleteDoc }) => {
   const handleDelete=()=>{
