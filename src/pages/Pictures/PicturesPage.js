@@ -1,12 +1,23 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { ImageOverlay } from "./components/ImageOverlay";
 import { PictureItem } from "./components/PictureItem";
 import { usePhotosContext } from "../../hooks/usePhotosContext";
 import styles from "./PicturesPage.module.css";
 import { AddPictureButton } from "./components/AddPictureButton";
+import { useDeleteDocument } from "../../hooks/useDeleteDocument";
 export const PicturesPage = () => {
   const [openOverlay, setOpenOverlay] = useState({ open: false, url: "" });
   const { photos, user, error } = usePhotosContext();
+  const [deleteOperationStatus, deleteDoc] = useDeleteDocument('Photos')
+  useEffect(() => {
+    if (deleteOperationStatus.success) {
+      console.log("Photo deleted");
+    }
+    if (deleteOperationStatus.error) {
+      console.log("Error in deleting a photo:");
+      console.error(deleteOperationStatus.error);
+    }
+  }, [deleteOperationStatus]);
   return (
     <>
       <h2>Photos</h2>
@@ -19,7 +30,7 @@ export const PicturesPage = () => {
       <div className={styles["container"]}>
         <AddPictureButton userId={user.uid} />
         {photos && photos.map((photo) => (
-          <PictureItem {...photo} key={photo.id} setOpenOverlay={setOpenOverlay} />
+          <PictureItem deleteDoc={deleteDoc} {...photo} key={photo.id} setOpenOverlay={setOpenOverlay} />
         ))}
       </div>
     </>

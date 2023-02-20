@@ -4,6 +4,8 @@
     background-color: white;
     display: grid;
     place-items: center;
+    position: relative;
+
 }
 .item label {
     /* Set to stretch because I want more clickable area */
@@ -22,4 +24,29 @@
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center;
+}
+.delete-button {
+    width: 1.5em;
+    height: 1.5em;
+    border: none;
+    background-color: red;
+    color: white;
+    outline: 2px solid white;
+    border-radius: 50%;
+    position: absolute;
+    right: 0;
+    top: 0;
+    transform: translate(75%,-75%);
+    opacity: 0.5;
+    transition: opacity 250ms;
+    cursor: pointer;
+}
+.uploaded-image-cell:hover {
+    cursor: pointer;
+}
+.uploaded-image-cell:hover + .delete-button,
+.delete-button:hover
+{
+    opacity: 1;
+    cursor: pointer;
 }
