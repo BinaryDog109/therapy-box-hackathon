@@ -21,48 +21,55 @@ import { SportsContextProvider } from "./context/SportsContext";
 // Note: Moved News and Tasks Provider here so that they can get authenticated user object
 function App() {
   const { user, authChecked } = useAuthContext();
-  const checkUserBeforeRouteTo = (TargetPage, props) => {
-    return user ? <TargetPage {...props} /> : <Redirect to={"/login"} />;
-  };
 
   return (
     authChecked && (
-      <NewsContextProvider>
-        <TasksContextProvider>
-          <PhotosContextProvider>
-            <SportsContextProvider>
-            <Router>
-              <div className="App">
-                {user && <LogoutButton />}
-                <Switch>
-                  <Route exact path={"/"}>
-                    {checkUserBeforeRouteTo(DashboardPage)}
-                  </Route>
-                  <Route exact path={"/login"}>
-                    {!user ? <LoginPage /> : <Redirect to={"/"} />}
-                  </Route>
-                  <Route exact path={"/signup"}>
-                    {!user ? <SignupPage /> : <Redirect to={"/"} />}
-                  </Route>
-                  <Route exact path={"/sports"}>
-                    {checkUserBeforeRouteTo(SportsPage)}
-                  </Route>
-                  <Route exact path={"/news"}>
-                    {checkUserBeforeRouteTo(NewsPage)}
-                  </Route>
-                  <Route exact path={"/photos"}>
-                    {checkUserBeforeRouteTo(PicturesPage)}
-                  </Route>
-                  <Route exact path={"/tasks"}>
-                    {checkUserBeforeRouteTo(TasksPage)}
-                  </Route>
-                </Switch>
-              </div>
-            </Router>
-            </SportsContextProvider>
-          </PhotosContextProvider>
-        </TasksContextProvider>
-      </NewsContextProvider>
+      <Router>
+        <div className="App">
+          {user && <LogoutButton />}
+          <Switch>
+            {/* Two basic routes (everyone can access) */}
+            <Route exact path={"/login"}>
+              {!user ? <LoginPage /> : <Redirect to={"/"} />}
+            </Route>
+            <Route exact path={"/signup"}>
+              {!user ? <SignupPage /> : <Redirect to={"/"} />}
+            </Route>
+            {/* Routes for unauthenticated users */}
+            {!user && (
+              <Route path={"/"}>
+                <Redirect to={"/login"} />
+              </Route>
+            )}
+            {/* Routes for authenticated users */}
+            {user && (
+              <NewsContextProvider>
+                <TasksContextProvider>
+                  <PhotosContextProvider>
+                    <SportsContextProvider>
+                      <Route exact path={"/"}>
+                        <DashboardPage />
+                      </Route>
+                      <Route exact path={"/sports"}>
+                        <SportsPage />
+                      </Route>
+                      <Route exact path={"/news"}>
+                        <NewsPage />
+                      </Route>
+                      <Route exact path={"/photos"}>
+                        <PicturesPage />
+                      </Route>
+                      <Route exact path={"/tasks"}>
+                        <TasksPage />
+                      </Route>
+                    </SportsContextProvider>
+                  </PhotosContextProvider>
+                </TasksContextProvider>
+              </NewsContextProvider>
+            )}
+          </Switch>
+        </div>
+      </Router>
     )
   );
 }
