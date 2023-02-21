@@ -122,7 +122,7 @@ export const SignupPage = () => {
           )}
 
           <button
-            style={{ cursor: pending ? "none" : "pointer" }}
+            style={{ cursor: pending ? "default" : "pointer" }}
             disabled={pending}
             className={styles["register-button"]}
             type="submit"

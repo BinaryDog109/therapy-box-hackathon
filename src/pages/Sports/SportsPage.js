@@ -12,11 +12,11 @@ export const SportsPage = () => {
   const { user } = useAuthContext();
   const [addOperationStatus, addDoc] = useAddDocument("Sports");
   const favTeam = document && document.favoriteTeam;
-  useEffect(()=>{
-    if(document){
-      setInput(document.favoriteTeam)
+  useEffect(() => {
+    if (document) {
+      setInput(document.favoriteTeam);
     }
-  },[document])
+  }, [document]);
   useEffect(() => {
     const getData = async () => {
       const data = await csv("./assets/sports.csv");
@@ -70,17 +70,21 @@ export const SportsPage = () => {
           onChange={handleChange}
           value={input}
         />
+        {filteredData.length > 0 && (
+          <button
+            onClick={handleMarkFavorite}
+            style={{
+              marginTop: "1em",
+              justifySelf: "center",
+              cursor: favTeam === input ? "default" : "pointer",
+            }}
+            type="submit"
+            disabled={addOperationStatus.pending || favTeam === input}
+          >
+            {favTeam === input ? "This is your fav team!" : "Mark Favorite"}
+          </button>
+        )}
         <ul className={styles["team-list"]}>
-          {filteredData.length > 0 && (
-            <button
-              onClick={handleMarkFavorite}
-              style={{ marginTop: 0, justifySelf: "center" }}
-              type="submit"
-              disabled={addOperationStatus.pending || favTeam === input}
-            >
-              {favTeam === input ? "This is your fav team!" : "Mark Favorite"}
-            </button>
-          )}
           {filteredData.map(({ beat, goals, beatGoals }, index) => (
             <li key={index} className={styles["list-item"]}>
               <span>

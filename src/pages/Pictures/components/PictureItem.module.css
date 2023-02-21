@@ -16,6 +16,10 @@
 }
 .addButtonImage {
     max-height: 100px;
+    transition: transform 500ms;
+}
+.item label:hover .addButtonImage{
+    transform: rotate(90deg);
 }
 .uploaded-image-cell {
     justify-self: stretch;

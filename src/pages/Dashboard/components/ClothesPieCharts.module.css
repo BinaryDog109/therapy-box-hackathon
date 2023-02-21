@@ -2,14 +2,6 @@
     flex-grow: 1;
     display: grid;
     place-items: center;
-    
-}
-.tool-tip {
-    position: absolute;
-    background-color: antiquewhite;
-    padding: .2em;
-    z-index: 2;
-    color: gray;
 }
 .container svg {
     max-width: 100px;

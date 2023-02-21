@@ -2,6 +2,7 @@
     width: 90%;
     max-width: 800px;
     margin: 0 auto;
+    text-align: initial;
 }
 .image-container {
     width: 60%;
@@ -36,5 +37,6 @@
     opacity: 1;
 }
 .article {
-    text-align: initial;
+    border: 2px dashed white;
+    padding: 1em;
 }

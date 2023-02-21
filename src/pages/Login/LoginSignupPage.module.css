@@ -72,18 +72,6 @@
     background-color: #55555562;
 }
 /* End of inputs styling */
-button[type='submit'] {
-    background-color: var(--button-color);
-    border: none;
-    outline: none;
-    font-family: inherit;
-    font-size: var(--body-fs);
-    font-weight: 600;
-    padding: .5em 5em;
-    border-radius: 3rem;
-    margin-top: 5em;
-    cursor: pointer;
-}
 button.register-button{
     margin-top: 0;
 }

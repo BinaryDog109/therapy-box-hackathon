@@ -1,6 +1,8 @@
 import styles from "./ClothesPieCharts.module.css";
 import { pie, arc } from "d3";
 import { useEffect, useRef, useState } from "react";
+import { createPortal } from "react-dom";
+
 const charColors = [
   "#CC9999",
   "#B3B31A",
@@ -45,8 +47,8 @@ export const ClothesPieChart = () => {
       (arcData.data[1] / 1000) *
       100
     ).toFixed(2)}%`;
-    tooltip.style.left = `${x + 20}px`;
-    tooltip.style.top = `${y + 20}px`;
+    tooltip.style.left = `${x + 5}px`;
+    tooltip.style.top = `${y + 5}px`;
   };
   const entries = data ? processData(data.payload) : [];
   const pieData = pie().value((d) => d[1])(entries);
@@ -55,8 +57,20 @@ export const ClothesPieChart = () => {
   return (
     data && (
       <>
-        <div ref={tooltipRef} className={styles["tool-tip"]}></div>
         <div className={styles["container"]}>
+          {createPortal(
+            <div
+              style={{
+                position: "absolute",
+                backgroundColor: "antiquewhite",
+                padding: ".2em",
+                zIndex: "2",
+                color: "gray",
+              }}
+              ref={tooltipRef}
+            ></div>,
+            document.body
+          )}
           <svg viewBox="0 0 100 100">
             <g transform={`translate(${pieRadius},${pieRadius})`}>
               {pieData.map((arcData, index) => (
