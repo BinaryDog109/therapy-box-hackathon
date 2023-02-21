@@ -5,7 +5,7 @@ import { useAuthContext } from "./useAuthContext";
 export const useLogout = () => {
   const { user, setUser } = useAuthContext();
   const [error, setError] = useState(null);
-  const [isCancelled, setIsCancelled] = useState(null);
+  const [isCancelled, setIsCancelled] = useState(false);
   const [pending, setPending] = useState(null);
 
   useEffect(() => {
@@ -29,5 +29,5 @@ export const useLogout = () => {
       }
     }
   };
-  return [logout, error, pending];
+  return [logout, error, pending, user];
 };

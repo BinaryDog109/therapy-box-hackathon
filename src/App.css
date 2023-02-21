@@ -60,16 +60,21 @@ button[type='submit']:hover {
 .logout-button:hover {
   transform: scaleY(1.2);
 }
-.hints-error {
+.hints-error, .hints-success {
   position: fixed;
   bottom: 0;
   width: 100%;
   color: white;
-  background-color: red;
   transform: translateY(100%);
   transition: transform 250ms;
 }
-.hints-error.active {
+.hints-error {
+  background-color: red;
+}
+.hints-success {
+  background-color: forestgreen;
+}
+.hints-error.active, .hints-success.active {
   transform: translateY(0);
 }
 h2 {

@@ -18,6 +18,9 @@ import { NewsContextProvider } from "./context/NewsContext";
 import { TasksContextProvider } from "./context/TasksContext";
 import { PhotosContextProvider } from "./context/PhotosContext";
 import { SportsContextProvider } from "./context/SportsContext";
+import { useEffect, useState } from "react";
+import { ErrorHints } from "./components-public/ErrorHints";
+import { SuccessHints } from "./components-public/SuccessHints";
 // Note: Moved News and Tasks Provider here so that they can get authenticated user object
 function App() {
   const { user, authChecked } = useAuthContext();
@@ -74,17 +77,34 @@ function App() {
   );
 }
 const LogoutButton = () => {
-  const [logout, pending, error] = useLogout();
-  if(error) {
-    console.error(error)
-  }
+  const [logout, logoutError, pending, user] = useLogout();
+  const [errors, setErrors] = useState([]);
+  useEffect(() => {
+    if (logoutError) {
+      setErrors((prev) => [...prev, logoutError]);
+    }
+  }, [logoutError]);
   const handleClick = () => {
     logout();
   };
   return (
-    <button className="logout-button" disabled={pending} onClick={handleClick}>
-      <span>LogOut</span>
-    </button>
+    <>
+      <ErrorHints errors={errors} />
+      {/* Successful hints might not get displayed 
+      due to logout button gets dismounted after logging out */}
+      <SuccessHints
+        base={user}
+        condition={user === null}
+        message="You have logged out"
+      />
+      <button
+        className="logout-button"
+        disabled={pending}
+        onClick={handleClick}
+      >
+        <span>LogOut</span>
+      </button>
+    </>
   );
 };
 export default App;
