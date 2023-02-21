@@ -1,70 +1,18 @@
-# Getting Started with Create React App
+# Therapy-Box Hackathon Project
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+A dashboard web application built with React and Firebase.
+- To run it, simply run `npm run start` or visit https://personal-dashboard-414ef.web.app/ 
+- File structure:
+    - `component-public`: Stores components available for all pages. Currently it is storing the `Hints` component that gets displayed after a CRUD operation is done.
+    - `context`: Stores different React Context. A Dashboard cell shares the corresponding context with its internal page. It helps prevent props drilling. Every context has a useXXXContext hook to improve code reuse.
+    - `firebase`: The firebase configuration file.
+    - `hooks`: Custom hooks that encapsulate different logic like CRUD operations, sign up, get geo-position and fetching resources
+    - `pages`: Stores pages (as React components) and sub-components
 
-## Available Scripts
 
-In the project directory, you can run:
-
-### `npm start`
-
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
-
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
-
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+# Resources I read along the way
+1. I customised HTML checkbox elements based on [this article](https://medium.com/claritydesignsystem/pure-css-accessible-checkboxes-and-radios-buttons-54063e759bb3).
+2. I created the pie chart by reading [this document](https://github.com/d3/d3-shape#pies).
+3. Firebase-related syntax is based on [this](https://firebase.google.com/docs/firestore/manage-data/add-data) and [this](https://firebase.google.com/docs/storage/web/upload-files?hl=zh-cn#web-version-8_7)
+4. [This question](https://stackoverflow.com/questions/4459379/preview-an-image-before-it-is-uploaded) helped me set up the preview of user selected images.
+5. [This useful trick](https://dev.to/fenok/stretching-body-to-full-viewport-height-the-missing-way-2ghd#:~:text=Applying%20min%2Dheight%3A%20100vh%20to,grow%20even%20more%20if%20necessary.) helped set up grid/flex containers that take up all remainig space.
