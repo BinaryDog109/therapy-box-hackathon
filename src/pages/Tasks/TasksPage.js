@@ -104,6 +104,11 @@ export const TasksPage = () => {
                 onChange={(e) => {
                   setNewTaskTitle(e.target.value);
                 }}
+                onKeyDown={(e)=>{
+                  if(e.key === 'Enter'){
+                    handleAddNewTask()
+                  }
+                }}
               />
             </li>
           )}
