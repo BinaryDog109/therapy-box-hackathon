@@ -19,12 +19,11 @@ export const SignupPage = () => {
       setErrors((prev) => [...prev, signUpError]);
     }
   }, [signUpError]);
-  useEffect(()=>{
-    if(user){
-      setErrors([])
-
+  useEffect(() => {
+    if (user) {
+      setErrors([]);
     }
-  },[user])
+  }, [user]);
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -61,7 +60,7 @@ export const SignupPage = () => {
     <>
       <h2>Sign Up</h2>
       {/* SuccessHints might not show up due to routing & dismounting */}
-      <SuccessHints base={user} message={'Signed up successfully'}/>
+      <SuccessHints base={user} message={"Signed up successfully"} />
       <ErrorHints errors={errors} />
       <div className={styles["container"]}>
         <form onSubmit={handleSubmit}>

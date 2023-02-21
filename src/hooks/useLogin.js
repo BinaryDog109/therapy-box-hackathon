@@ -24,7 +24,9 @@ export const useLogin = () => {
       }
     } catch (error) {
       if (!isCancelled) {
-        setError(error.message);
+        // Set the error object as state because otherwise,
+        // effects in ErrorHints won't run due to identical error strings
+        setError(error);
         setPending(false)
       }
     }
