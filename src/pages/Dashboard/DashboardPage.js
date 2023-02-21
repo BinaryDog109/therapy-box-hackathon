@@ -1,7 +1,4 @@
-import { Route, Switch } from "react-router-dom";
 import { useAuthContext } from "../../hooks/useAuthContext";
-import { useRSS } from "../../hooks/useRSS";
-import { SportsPage } from "../Sports/SportsPage";
 import { ClothesPieChart } from "./components/ClothesPieChart";
 import { DashboardItem } from "./components/DashboardItem";
 import { NewsInfo } from "./components/NewsInfo";
