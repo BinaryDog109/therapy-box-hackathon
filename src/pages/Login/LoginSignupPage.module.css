@@ -6,13 +6,6 @@
     align-items: center;
     gap: 2em;
 }
-.hints-error {
-    position: fixed;
-    bottom: 0;
-    width: 100%;
-    color: white;
-    background-color: red;
-}
 /* Inputs styling */
 /* The hierarchy: .inputs > .row > input */
 .inputs {

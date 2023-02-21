@@ -1,4 +1,4 @@
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { useSignUp } from "../../hooks/useSignUp";
 import styles from "./LoginSignupPage.module.css";
 const initialUserInfo = {
@@ -11,17 +11,33 @@ export const SignupPage = () => {
   const [signUp, user, error, pending] = useSignUp();
   const [userInfo, setUserInfo] = useState({ ...initialUserInfo });
   const [avatar, setAvatar] = useState(null);
-  const [arePasswordsMatch, setArePasswordsMatch] = useState(true);
-
+  const [errors, setErrors] = useState([]);
+  const hintsErrorRef=useRef()
+  if (error) {
+    setErrors((prev) => [...prev, error]);
+  }
+  useEffect(() => {
+    let timerId;
+    if (errors.length) {
+      hintsErrorRef.current.classList.add('active')
+      timerId = setTimeout(() => {
+        hintsErrorRef.current.classList.remove('active')
+      }, 5000);
+    }
+    return () => clearTimeout(timerId);
+  }, [errors]);
   const handleSubmit = (event) => {
     event.preventDefault();
     const { username, email, password, confirmPassword } = userInfo;
-    if (!username || !email || !password || !confirmPassword) return;
+    if (!username || !email || !password || !confirmPassword) {
+      setErrors((prev) => [...prev, "Please fill in every entry"]);
+      return;
+    }
     if (password !== confirmPassword) {
       setUserInfo((prev) => ({ ...prev, confirmPassword: "" }));
-      setArePasswordsMatch(false);
+      setErrors((prev) => [...prev, "Passwords do not match"]);
     } else {
-      setArePasswordsMatch(true);
+      setErrors([]);
       setUserInfo({ ...initialUserInfo });
 
       signUp(email, password, username, avatar);
@@ -32,6 +48,7 @@ export const SignupPage = () => {
     const file = event.target.files[0];
     if (!file || file.type.indexOf("image") === -1) {
       console.error("Please upload an image!");
+      setErrors((prev) => [...prev, "Please upload an image"]);
       return;
     }
     setAvatar(file);
@@ -43,11 +60,12 @@ export const SignupPage = () => {
   return (
     <>
       <h2>Sign Up</h2>
-      <div className={styles["hints-error"]}>
-        {!arePasswordsMatch && !userInfo.confirmPassword.length && (
-          <span>Password does not match!</span>
-        )}
-        {error && <span>{error}</span>}
+      <div ref={hintsErrorRef} className={`hints-error`}>
+        {errors.map((error, index) => (
+          <div key={index} className="error">
+            <span>{error}</span>
+          </div>
+        ))}
       </div>
       <div className={styles["container"]}>
         <form onSubmit={handleSubmit}>
@@ -113,7 +131,6 @@ export const SignupPage = () => {
                     id="avatar"
                     name="avatar"
                     onChange={handleAvatarSelected}
-                    required
                   />
                 </label>
               </div>

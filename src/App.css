@@ -60,6 +60,18 @@ button[type='submit']:hover {
 .logout-button:hover {
   transform: scaleY(1.2);
 }
+.hints-error {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  color: white;
+  background-color: red;
+  transform: translateY(100%);
+  transition: transform 250ms;
+}
+.hints-error.active {
+  transform: translateY(0);
+}
 h2 {
   font-weight: 600;
   font-size: var(--h2-fs)
