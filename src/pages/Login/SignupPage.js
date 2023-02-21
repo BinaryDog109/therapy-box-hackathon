@@ -9,14 +9,15 @@ const initialUserInfo = {
   confirmPassword: "",
 };
 export const SignupPage = () => {
-  const [signUp, user, error, pending] = useSignUp();
+  const [signUp, user, signUpError, pending] = useSignUp();
   const [userInfo, setUserInfo] = useState({ ...initialUserInfo });
   const [avatar, setAvatar] = useState(null);
   const [errors, setErrors] = useState([]);
-  if (error) {
-    setErrors((prev) => [...prev, error]);
-  }
-  
+  useEffect(() => {
+    if (signUpError) {
+      setErrors((prev) => [...prev, signUpError]);
+    }
+  }, [signUpError]);
   const handleSubmit = (event) => {
     event.preventDefault();
     const { username, email, password, confirmPassword } = userInfo;
@@ -51,7 +52,7 @@ export const SignupPage = () => {
   return (
     <>
       <h2>Sign Up</h2>
-      <ErrorHints errors={errors}/>
+      <ErrorHints errors={errors} />
       <div className={styles["container"]}>
         <form onSubmit={handleSubmit}>
           <div className={styles["inputs"]}>
