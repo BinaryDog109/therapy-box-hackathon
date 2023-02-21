@@ -1,22 +1,10 @@
 import styles from "./PictureItem.module.css";
-import { useAddDocument } from "../../../hooks/useAddDocument";
 import { fireStorage } from "../../../firebase/config";
-import { useEffect } from "react";
 
-export const AddPictureButton = ({ userId }) => {
-  const [addOperationStatus, addDoc] = useAddDocument('Photos');
-  // The following useEffects are to check whether the add or update operation has been successful
-  // and react based on its status
-  useEffect(() => {
-    if (addOperationStatus.success) {
-      console.log("New photo added:", addOperationStatus.document);
-    }
-    if (addOperationStatus.error) {
-      console.log("Error in adding a new photo:");
-      console.error(addOperationStatus.error);
-    }
-  }, [addOperationStatus]);
+export const AddPictureButton = ({ userId, addDoc }) => {
   const handleImageUpload = async (event) => {
+    console.log('try to upload')
+
     const file = event.target.files[0];
     if (!file || file.type.indexOf("image") === -1) {
       console.error("Please upload an image!");
@@ -49,7 +37,11 @@ export const AddPictureButton = ({ userId }) => {
           id="file-input"
           type="file"
           accept="image/*"
-          onChange={handleImageUpload}
+          onChange={(event)=>{
+            handleImageUpload(event)
+            // Setting null so that it allows for selecting the same file
+            event.target.value=null
+          }}
         />
       </label>
     </div>
