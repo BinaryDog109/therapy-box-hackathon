@@ -20,7 +20,7 @@ export const TasksPage = () => {
   // and react based on its status
   useEffect(() => {
     if (addOperationStatus.success) {
-      console.log("New task added:", addOperationStatus.document);
+      console.log("New task added");
       setNewTaskTitle("");
       setShowNewTask(false);
       setSuccesses(['New task added'])

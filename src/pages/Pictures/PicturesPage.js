@@ -24,7 +24,7 @@ export const PicturesPage = () => {
   // and react based on its status
   useEffect(() => {
     if (addOperationStatus.success) {
-      console.log("New photo added:", addOperationStatus.document);
+      console.log("New photo added");
       setSuccesses(["New photo added!"]);
     }
     if (addOperationStatus.error) {
