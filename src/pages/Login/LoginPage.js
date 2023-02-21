@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { ErrorHints } from "../../components-public/ErrorHints";
+import { Hints } from "../../components-public/Hints";
 import { useLogin } from "../../hooks/useLogin";
 import styles from "./LoginSignupPage.module.css";
 export const LoginPage = () => {
@@ -28,7 +28,7 @@ export const LoginPage = () => {
   return (
     <>
       <h2>Login</h2>
-      <ErrorHints errors={errors} />
+      <Hints hints={errors} />
       <div className={styles["container"]}>
         <form onSubmit={handleSubmit}>
           <div className={styles["inputs"]}>

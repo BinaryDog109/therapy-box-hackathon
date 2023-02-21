@@ -19,7 +19,7 @@ import { TasksContextProvider } from "./context/TasksContext";
 import { PhotosContextProvider } from "./context/PhotosContext";
 import { SportsContextProvider } from "./context/SportsContext";
 import { useEffect, useState } from "react";
-import { ErrorHints } from "./components-public/ErrorHints";
+import { Hints } from "./components-public/Hints";
 // Note: Moved News and Tasks Provider here so that they can get authenticated user object
 function App() {
   const { user, authChecked } = useAuthContext();
@@ -88,7 +88,7 @@ const LogoutButton = () => {
   };
   return (
     <>
-      <ErrorHints errors={errors} />
+      <Hints hints={errors} />
       <button
         className="logout-button"
         disabled={pending}
