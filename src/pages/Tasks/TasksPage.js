@@ -6,6 +6,7 @@ import { useTasksContext } from "../../hooks/useTasksContext";
 import { useAddDocument } from "../../hooks/useAddDocument";
 import { useUpdateDocument } from "../../hooks/useUpdateDocument";
 import { useDeleteDocument } from "../../hooks/useDeleteDocument";
+import { Hints } from "../../components-public/Hints";
 export const TasksPage = () => {  
   const { tasks, user, error } = useTasksContext();
   const [addOperationStatus, addDoc] = useAddDocument("Tasks");
@@ -13,6 +14,8 @@ export const TasksPage = () => {
   const [deleteOperationStatus, deleteDoc] = useDeleteDocument("Tasks");
   const [showNewTask, setShowNewTask] = useState(false);
   const [newTaskTitle, setNewTaskTitle] = useState("");
+  const [errors, setErrors] = useState([])
+  const [successes, setSuccesses] = useState([])
   // The following useEffects are to check whether the add or update operation has been successful
   // and react based on its status
   useEffect(() => {
@@ -20,28 +23,34 @@ export const TasksPage = () => {
       console.log("New task added:", addOperationStatus.document);
       setNewTaskTitle("");
       setShowNewTask(false);
+      setSuccesses(['New task added'])
     }
     if (addOperationStatus.error) {
       console.log("Error in adding a new task:");
       console.error(addOperationStatus.error);
+      setErrors(["Error in adding tasks"])
     }
   }, [addOperationStatus]);
   useEffect(() => {
     if (updateOperationStatus.success) {
       console.log("Task updated");
+      setSuccesses(['Task updated!'])
     }
     if (updateOperationStatus.error) {
       console.log("Error in updating a task:");
       console.error(updateOperationStatus.error);
+      setErrors(['Error in updating a task:'])
     }
   }, [updateOperationStatus]);
   useEffect(() => {
     if (deleteOperationStatus.success) {
       console.log("Task deleted");
+      setSuccesses(['Task deleted!'])
     }
     if (deleteOperationStatus.error) {
       console.log("Error in deleting a task:");
       console.error(deleteOperationStatus.error);
+      setErrors(['Error in deleting tasks'])
     }
   }, [deleteOperationStatus]);
 
@@ -66,6 +75,8 @@ export const TasksPage = () => {
   return (
     <>
       <h2 className="left-position">Tasks</h2>
+      <Hints hints={errors} />
+      <Hints hints={successes} isSuccessHints />
       <div className={styles["container"]}>
         <ul className={styles["task-list"]}>
           {showNewTask && (
