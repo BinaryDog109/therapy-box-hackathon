@@ -1,6 +1,5 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import { ErrorHints } from "../../components-public/ErrorHints";
-import { SuccessHints } from "../../components-public/SuccessHints";
 import { useSignUp } from "../../hooks/useSignUp";
 import styles from "./LoginSignupPage.module.css";
 const initialUserInfo = {
@@ -59,8 +58,6 @@ export const SignupPage = () => {
   return (
     <>
       <h2>Sign Up</h2>
-      {/* SuccessHints might not show up due to routing & dismounting */}
-      <SuccessHints base={user} message={"Signed up successfully"} />
       <ErrorHints errors={errors} />
       <div className={styles["container"]}>
         <form onSubmit={handleSubmit}>

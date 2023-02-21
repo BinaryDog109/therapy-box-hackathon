@@ -20,7 +20,6 @@ import { PhotosContextProvider } from "./context/PhotosContext";
 import { SportsContextProvider } from "./context/SportsContext";
 import { useEffect, useState } from "react";
 import { ErrorHints } from "./components-public/ErrorHints";
-import { SuccessHints } from "./components-public/SuccessHints";
 // Note: Moved News and Tasks Provider here so that they can get authenticated user object
 function App() {
   const { user, authChecked } = useAuthContext();
@@ -90,13 +89,6 @@ const LogoutButton = () => {
   return (
     <>
       <ErrorHints errors={errors} />
-      {/* Successful hints might not get displayed 
-      due to logout button gets dismounted after logging out */}
-      <SuccessHints
-        base={user}
-        condition={user === null}
-        message="You have logged out"
-      />
       <button
         className="logout-button"
         disabled={pending}
