@@ -5,18 +5,17 @@ export const NewsInfo = () => {
 
   if (error) {
     console.error(error);
-    return <p>{error}</p>;
   }
 
   const title = feed ? feed.title : null;
   return (
     <div className={styles["container"]}>
-      {feed ? (
+      {feed && !error ? (
         <>
           <span className={styles["headline"]}>{title}</span>
         </>
       ) : (
-        <span>Loading...</span>
+        <span>{error? 'Error in fetching news' : 'Loading...'}</span>
       )}
     </div>
   );

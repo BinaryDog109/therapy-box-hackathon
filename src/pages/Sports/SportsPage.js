@@ -17,7 +17,7 @@ export const SportsPage = () => {
   }
   useEffect(() => {
     if (document) {
-      setInput(document.favoriteTeam);
+      setInput(document.favoriteTeam || '');
     }
   }, [document]);
   useEffect(() => {

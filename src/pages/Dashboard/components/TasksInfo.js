@@ -5,30 +5,44 @@ import styles from "./TaskInfo.module.css";
 export const TasksInfo = () => {
   const { tasks, error } = useTasksContext();
   const topTasks = tasks && tasks.slice(0, 3);
-  return (
+  if (error) {
+    console.error(error);
+  }
+  return (topTasks && topTasks.length && !error) ? (
     <div className={styles["container"]}>
       <ul>
-        {topTasks &&
-          topTasks.map((task) => (
-            <li className={itemStyles["task-item"]} key={task.id}>
+        {topTasks.map((task) => (
+          <li className={itemStyles["task-item"]} key={task.id}>
+            <span
+              style={{
+                textDecorationLine: task.completed ? "line-through" : "none",
+                textDecorationColor: "black",
+              }}
+              className={styles["title"]}
+            >
+              {task.title}
+            </span>
+            <label>
+              <input defaultChecked={task.completed} type="checkbox" />
               <span
-                style={{
-                  textDecorationLine: task.completed ? "line-through" : "none",
-                  textDecorationColor: "black",
-                }}
-                className={styles["title"]}
-              >
-                {task.title}
-              </span>
-              <label>
-                <input defaultChecked={task.completed} type="checkbox" />
-                <span
-                  className={`${itemStyles["checkmark"]} ${styles["checkmark"]} `}
-                ></span>
-              </label>
-            </li>
-          ))}
+                className={`${itemStyles["checkmark"]} ${styles["checkmark"]} `}
+              ></span>
+            </label>
+          </li>
+        ))}
       </ul>
+    </div>
+  ) : (
+    <div
+      style={{
+        flexGrow: "1",
+        display: "grid",
+        placeItems: "center",
+        fontSize: "var(--body-big-fs)",
+        color: "initial",
+      }}
+    >
+      {error ? "Error fetching tasks" : "✔️ Add some todos!"}
     </div>
   );
 };
