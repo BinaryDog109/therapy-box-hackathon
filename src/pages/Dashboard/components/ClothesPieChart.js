@@ -15,7 +15,9 @@ export const ClothesPieChart = () => {
   const [data, setData] = useState(null);
   const [error, setError] = useState(null);
   const tooltipRef = useRef();
-
+  if(error) {
+    console.error(error)
+  }
   useEffect(() => {
     let isCancelled = false;
     const getData = async (url) => {

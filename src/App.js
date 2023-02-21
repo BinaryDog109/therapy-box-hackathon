@@ -75,6 +75,9 @@ function App() {
 }
 const LogoutButton = () => {
   const [logout, pending, error] = useLogout();
+  if(error) {
+    console.error(error)
+  }
   const handleClick = () => {
     logout();
   };
