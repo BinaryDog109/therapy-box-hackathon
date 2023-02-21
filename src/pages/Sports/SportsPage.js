@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { useAddDocument } from "../../hooks/useAddDocument";
 import { useSportsContext } from "../../hooks/useSportsContext";
 import { useAuthContext } from "../../hooks/useAuthContext";
+import { Hints } from "../../components-public/Hints";
 
 export const SportsPage = () => {
   const [data, setData] = useState(null);
@@ -11,10 +12,15 @@ export const SportsPage = () => {
   const [input, setInput] = useState("");
   const { user } = useAuthContext();
   const [addOperationStatus, addDoc] = useAddDocument("Sports");
+  const [errors, setErrors] = useState([])
+  const [successes, setSuccesses] = useState([])
   const favTeam = document && document.favoriteTeam;
-  if(error) {
-    console.error(error)
-  }
+  useEffect(()=>{
+    if(error) {
+      console.error(error)
+      setErrors(['Errors in fetching fav team'])
+    }
+  },[error])
   useEffect(() => {
     if (document) {
       setInput(document.favoriteTeam || '');
@@ -30,9 +36,11 @@ export const SportsPage = () => {
   useEffect(() => {
     if (addOperationStatus.success) {
       console.log("Mark success");
+      setSuccesses(['Great, You have marked your fav team!'])
     }
     if (addOperationStatus.error) {
       console.error(addOperationStatus.error);
+      setErrors(['Error in marking teams'])
     }
   }, [addOperationStatus]);
 
@@ -63,6 +71,8 @@ export const SportsPage = () => {
   return (
     <>
       <h2 className="left-position">Sports</h2>
+      <Hints hints={errors} />
+      <Hints hints={successes} isSuccessHints />
       <div className={styles["container"]}>
         <input
           autoFocus
