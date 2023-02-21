@@ -12,7 +12,13 @@ export const DashboardPage = () => {
   const { user, authChecked } = useAuthContext();
   return (
     <>
-      <h2>Good day {user.displayName}</h2>
+      <div className={styles["header"]}>
+        <h2>Good day {user.displayName}</h2>
+        {user.photoURL ? (
+          <img src={user.photoURL} alt={`Avatar of ${user.displayName}`} />
+        ) : null}
+      </div>
+
       <div className={styles["container"]}>
         <DashboardItem disableClick title={"Weather"}>
           <WeatherInfo />
