@@ -1,4 +1,5 @@
 import { useEffect, useMemo, useRef, useState } from "react";
+import { ErrorHints } from "../../components-public/ErrorHints";
 import { useSignUp } from "../../hooks/useSignUp";
 import styles from "./LoginSignupPage.module.css";
 const initialUserInfo = {
@@ -12,20 +13,10 @@ export const SignupPage = () => {
   const [userInfo, setUserInfo] = useState({ ...initialUserInfo });
   const [avatar, setAvatar] = useState(null);
   const [errors, setErrors] = useState([]);
-  const hintsErrorRef=useRef()
   if (error) {
     setErrors((prev) => [...prev, error]);
   }
-  useEffect(() => {
-    let timerId;
-    if (errors.length) {
-      hintsErrorRef.current.classList.add('active')
-      timerId = setTimeout(() => {
-        hintsErrorRef.current.classList.remove('active')
-      }, 5000);
-    }
-    return () => clearTimeout(timerId);
-  }, [errors]);
+  
   const handleSubmit = (event) => {
     event.preventDefault();
     const { username, email, password, confirmPassword } = userInfo;
@@ -60,13 +51,7 @@ export const SignupPage = () => {
   return (
     <>
       <h2>Sign Up</h2>
-      <div ref={hintsErrorRef} className={`hints-error`}>
-        {errors.map((error, index) => (
-          <div key={index} className="error">
-            <span>{error}</span>
-          </div>
-        ))}
-      </div>
+      <ErrorHints errors={errors}/>
       <div className={styles["container"]}>
         <form onSubmit={handleSubmit}>
           <div className={styles["inputs"]}>
