@@ -12,6 +12,9 @@ export const SportsPage = () => {
   const { user } = useAuthContext();
   const [addOperationStatus, addDoc] = useAddDocument("Sports");
   const favTeam = document && document.favoriteTeam;
+  if(error) {
+    console.error(error)
+  }
   useEffect(() => {
     if (document) {
       setInput(document.favoriteTeam);
