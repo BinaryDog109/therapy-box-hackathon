@@ -7,6 +7,7 @@ export const useUpdateDocument = (collectionName) => {
     success: false,
     document: null,
     error: null,
+    pending: false,
   });
   const [isCancelled, setIsCancelled] = useState(false);
   useEffect(() => {
@@ -15,6 +16,10 @@ export const useUpdateDocument = (collectionName) => {
     };
   }, []);
   const updateDoc = async (id, data) => {
+    setUpdateOperationStatus((prev) => ({
+      ...prev,
+      pending: true,
+    }));
     try {
       await firestore
         .collection(collectionName)
@@ -26,12 +31,14 @@ export const useUpdateDocument = (collectionName) => {
           ...prev,
           document: null,
           success: true,
+          pending: false,
         }));
       }
     } catch (error) {
       setUpdateOperationStatus((prev) => ({
         ...prev,
         error: error.message || "Unknown Error!",
+        pending: false,
       }));
     }
   };

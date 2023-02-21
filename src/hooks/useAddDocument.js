@@ -7,6 +7,7 @@ export const useAddDocument = (collectionName) => {
     success: false,
     document: null,
     error: null,
+    pending: false,
   });
   const [isCancelled, setIsCancelled] = useState(false);
   useEffect(() => {
@@ -14,25 +15,39 @@ export const useAddDocument = (collectionName) => {
       setIsCancelled(true);
     };
   }, []);
-  const addDoc = async (doc) => {
+  const addDoc = async (doc, id = "") => {
+    setAddOperationStatus((prev) => ({
+      ...prev,
+      pending: true,
+    }));
     const createdAt = timestamp.fromDate(new Date());
     try {
-      const addedDocument = await firestore
-        .collection(collectionName)
-        .add({ ...doc, createdAt });
+      let addedDocument = null;
+      if (id) {
+        addedDocument = await firestore
+          .collection(collectionName)
+          .doc(id)
+          .set(doc, { merge: true });
+      } else {
+        addedDocument = await firestore
+          .collection(collectionName)
+          .add({ ...doc, createdAt });
+      }
       if (!isCancelled) {
         setAddOperationStatus((prev) => ({
           ...prev,
           document: addedDocument,
           success: true,
+          pending: false,
         }));
       }
     } catch (error) {
       setAddOperationStatus((prev) => ({
         ...prev,
         error: error.message || "Unknown Error!",
+        pending: false,
       }));
     }
   };
-  return [addOperationStatus, addDoc]
+  return [addOperationStatus, addDoc];
 };

@@ -7,6 +7,7 @@ export const useDeleteDocument = (collectionName) => {
     success: false,
     document: null,
     error: null,
+    pending: false,
   });
   const [isCancelled, setIsCancelled] = useState(false);
   useEffect(() => {
@@ -15,6 +16,10 @@ export const useDeleteDocument = (collectionName) => {
     };
   }, []);
   const deleteDoc = async (id) => {
+    setDeleteOperationStatus((prev) => ({
+      ...prev,
+      pending: true,
+    }));
     try {
       await firestore.collection(collectionName).doc(id).delete();
 
@@ -23,12 +28,14 @@ export const useDeleteDocument = (collectionName) => {
           ...prev,
           document: null,
           success: true,
+          pending: false,
         }));
       }
     } catch (error) {
       setDeleteOperationStatus((prev) => ({
         ...prev,
         error: error.message || "Unknown Error!",
+        pending: false,
       }));
     }
   };

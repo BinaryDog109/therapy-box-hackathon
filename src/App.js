@@ -17,6 +17,7 @@ import { useLogout } from "./hooks/useLogout";
 import { NewsContextProvider } from "./context/NewsContext";
 import { TasksContextProvider } from "./context/TasksContext";
 import { PhotosContextProvider } from "./context/PhotosContext";
+import { SportsContextProvider } from "./context/SportsContext";
 // Note: Moved News and Tasks Provider here so that they can get authenticated user object
 function App() {
   const { user, authChecked } = useAuthContext();
@@ -29,6 +30,7 @@ function App() {
       <NewsContextProvider>
         <TasksContextProvider>
           <PhotosContextProvider>
+            <SportsContextProvider>
             <Router>
               <div className="App">
                 {user && <LogoutButton />}
@@ -57,6 +59,7 @@ function App() {
                 </Switch>
               </div>
             </Router>
+            </SportsContextProvider>
           </PhotosContextProvider>
         </TasksContextProvider>
       </NewsContextProvider>
@@ -70,7 +73,7 @@ const LogoutButton = () => {
   };
   return (
     <button className="logout-button" disabled={pending} onClick={handleClick}>
-      <span>Out</span>
+      <span>LogOut</span>
     </button>
   );
 };

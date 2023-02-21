@@ -7,7 +7,7 @@ export const PhotosContextProvider = ({ children }) => {
   const { user } = useAuthContext();
   const [photos, error] = useCollection(
     "Photos",
-    null,
+    ["uid", "==", user.uid],
     ["createdAt", "desc"]
   );
 

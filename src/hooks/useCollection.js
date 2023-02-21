@@ -2,11 +2,13 @@ import { useEffect, useRef, useState } from "react";
 import { firestore } from "../firebase/config";
 
 export const useCollection = (name, _query, _orderBy) => {
+  
   const [data, setData] = useState(null);
   const [error, setError] = useState(null);
   // Prevent infinite loop thanks to useRef
   const orderBy = useRef(_orderBy).current;
   const query = useRef(_query).current;
+  
   useEffect(() => {
     const store =
       orderBy && query
