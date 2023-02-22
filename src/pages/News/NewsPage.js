@@ -1,5 +1,9 @@
 import { useNewsContext } from "../../hooks/useNewsContext";
 import styles from "./NewsPage.module.css";
+/**
+ * @description A page component for the news page. 
+ * It displays a logo image that links to the actual news page, a news headline, and breif description of the news
+ */
 export const NewsPage = () => {
   const { feed, setFeed, error } = useNewsContext();
   return feed && (

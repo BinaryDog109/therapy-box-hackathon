@@ -5,7 +5,13 @@ import { useAddDocument } from "../../hooks/useAddDocument";
 import { useSportsContext } from "../../hooks/useSportsContext";
 import { useAuthContext } from "../../hooks/useAuthContext";
 import { Hints } from "../../components-public/Hints";
-
+/**
+ * 
+ * @description A page component that displays an input
+ * where users can type in their favorite team's name
+ * and a body listing out the other teams they beat, with scores
+ * User can mark their favorite team here by clicking the "Mark favorite" button
+ */
 export const SportsPage = () => {
   const [data, setData] = useState(null);
   const { document, error } = useSportsContext();

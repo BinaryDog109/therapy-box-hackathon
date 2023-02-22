@@ -2,7 +2,9 @@ import firebase from "firebase/app";
 import "firebase/firestore";
 import "firebase/auth";
 import "firebase/storage"
-
+/**
+ * @description Firebase configuration code - exporting Firestore, FireAuth and FireStorage
+*/
 const firebaseConfig = {
   apiKey: "AIzaSyDLvw0GsxoG0GCgv8NrWQNXYiiq9bLu2Oc",
   authDomain: "personal-dashboard-414ef.firebaseapp.com",

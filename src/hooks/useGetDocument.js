@@ -1,6 +1,11 @@
 import { useEffect, useState } from "react";
 import { firestore } from "../firebase/config";
-
+/**
+ * A hook that sets up the document and state of a Get (individual) operation
+ * @param {string} collectionName - name of a Firestore collection
+ * @param {string} id - id of a Firestore document
+ * @returns {Array}
+ */
 export const useGetDocument = (collection, id) => {
   const [document, setDocument] = useState(null);
   const [error, setError] = useState(null);

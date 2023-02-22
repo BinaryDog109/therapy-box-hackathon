@@ -1,5 +1,8 @@
 import styles from "./ImageOverlay.module.css";
-// A fullscreen overlay to display images
+/**
+ * 
+ * @description A sub-component of the photos page. A fullscreen overlay to display images
+ */
 export const ImageOverlay = ({
   imageUrl,
   description = "",

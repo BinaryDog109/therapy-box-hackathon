@@ -7,6 +7,10 @@ import { useAddDocument } from "../../hooks/useAddDocument";
 import { useUpdateDocument } from "../../hooks/useUpdateDocument";
 import { useDeleteDocument } from "../../hooks/useDeleteDocument";
 import { Hints } from "../../components-public/Hints";
+/**
+ * @description A page component that displays tasks page. Very similar to a to-do page,
+ * where user can create/delete/check tasks
+ */
 export const TasksPage = () => {  
   const { tasks, user, error } = useTasksContext();
   const [addOperationStatus, addDoc] = useAddDocument("Tasks");

@@ -1,6 +1,8 @@
 import { createContext } from "react";
 import { useRSS } from "../hooks/useRSS";
-
+/**
+ * @description A React Context and Context provider that keep track of the collected RSS feed
+*/
 export const NewsContext = createContext();
 export const NewsContextProvider = ({ children }) => {
   const [feed, setFeed, error] = useRSS(

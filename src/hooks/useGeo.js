@@ -1,5 +1,8 @@
 import { useEffect, useState } from "react";
-
+/**
+ * A hook that sets up the state of weather and geolocation data
+ * @returns {Array}
+ */
 export const useGeoWeather = () => {
   const [pos, setPos] = useState(null);
   const [weatherData, setWeatherData] = useState(null);

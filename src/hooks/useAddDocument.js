@@ -1,6 +1,10 @@
 import { useEffect, useState } from "react";
 import { firestore, timestamp } from "../firebase/config";
-
+/**
+ * A hook that sets up the document and state of a Create operation
+ * @param {string} collectionName - name of a Firestore collection
+ * @returns {Array} - addOperationStatus: A React state object; addDoc - The function that adds a document
+ */
 // Encapsulate an operation in a hook so that it becomes safer and react-ful
 export const useAddDocument = (collectionName) => {
   const [addOperationStatus, setAddOperationStatus] = useState({

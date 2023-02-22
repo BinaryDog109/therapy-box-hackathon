@@ -1,6 +1,8 @@
 import { createContext, useEffect, useState } from "react";
 import { fireAuth } from "../firebase/config";
-
+/**
+ * @description A React Context and Context provider that keep track of the user object after signing up and logging in
+*/
 export const AuthContext = createContext();
 export const AuthContextProvider = ({ children }) => {
   const [user, setUser] = useState(null);

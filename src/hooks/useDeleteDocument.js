@@ -1,6 +1,10 @@
 import { useEffect, useState } from "react";
 import { firestore } from "../firebase/config";
-
+/**
+ * A hook that sets up the document and state of a Delete operation
+ * @param {string} collectionName - name of a Firestore collection
+ * @returns {Array}
+ */
 // Encapsulate an operation in a hook so that it becomes safer and react-ful
 export const useDeleteDocument = (collectionName) => {
   const [deleteOperationStatus, setDeleteOperationStatus] = useState({

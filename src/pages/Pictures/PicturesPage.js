@@ -7,6 +7,9 @@ import { AddPictureButton } from "./components/AddPictureButton";
 import { useDeleteDocument } from "../../hooks/useDeleteDocument";
 import { Hints } from "../../components-public/Hints";
 import { useAddDocument } from "../../hooks/useAddDocument";
+/**
+ * @description A page component for the photos page. Displaying user uploaded photos.
+ */
 export const PicturesPage = () => {
   const [openOverlay, setOpenOverlay] = useState({ open: false, url: "" });
   const { photos, user, error: fetchingError } = usePhotosContext();

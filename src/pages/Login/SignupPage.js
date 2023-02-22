@@ -8,6 +8,9 @@ const initialUserInfo = {
   password: "",
   confirmPassword: "",
 };
+/**
+ * @description A page component for the signup page. Users get created on this page.
+ */
 export const SignupPage = () => {
   const [signUp, user, signUpError, pending] = useSignUp();
   const [userInfo, setUserInfo] = useState({ ...initialUserInfo });

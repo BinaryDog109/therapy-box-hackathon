@@ -2,6 +2,10 @@ import { useEffect, useState } from "react";
 import { Hints } from "../../components-public/Hints";
 import { useLogin } from "../../hooks/useLogin";
 import styles from "./LoginSignupPage.module.css";
+/**
+ * @description A page component for the login page. Users get authenticated here.
+ * It is also a redirect destination for unauthenticated users who try to access authenticated pages.
+ */
 export const LoginPage = () => {
   const [userInfo, setUserInfo] = useState({
     email: "",

@@ -1,7 +1,10 @@
 import { useEffect, useState } from "react";
 import { fireAuth } from "../firebase/config";
 import { useAuthContext } from "./useAuthContext";
-
+/**
+ * A hook that sets up the state of a login function, exporting the login function
+ * @returns {[login, user:object, error:string, pending:boolean]}
+ */
 export const useLogin = () => {
   const { user, setUser } = useAuthContext();
   const [error, setError] = useState(null);
@@ -20,14 +23,14 @@ export const useLogin = () => {
       const res = await fireAuth.signInWithEmailAndPassword(email, password);
       if (!isCancelled) {
         setUser(res.user);
-        setPending(false)
+        setPending(false);
       }
     } catch (error) {
       if (!isCancelled) {
         // Set the error object as state because otherwise,
         // effects in ErrorHints won't run due to identical error strings
         setError(error);
-        setPending(false)
+        setPending(false);
       }
     }
   };

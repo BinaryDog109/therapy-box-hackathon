@@ -1,5 +1,10 @@
 import { useEffect, useRef } from "react";
-
+/**
+ * A global component that helps display success/error messages
+ * @param {object} props 
+ * @param {Array<string>} props.hints - An array of messages to be displayed
+ * @param {Boolean} props.isSuccessHints - True for green color, false for red
+ */
 export const Hints = ({ hints, isSuccessHints=false }) => {
   const hintsRef = useRef();
 

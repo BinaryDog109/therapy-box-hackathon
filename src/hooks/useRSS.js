@@ -1,5 +1,8 @@
 import { useEffect, useState } from "react";
-
+/**
+ * A hook that sets up states of RSS fetching
+ * @returns {Array}
+ */
 export const useRSS = (url) => {
   const [feed, setFeed] = useState(null);
   const [error, setError] = useState(null)

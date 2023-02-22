@@ -1,6 +1,10 @@
 import { useEffect, useState } from "react";
 import { fireAuth, fireStorage } from "../firebase/config";
 import { useAuthContext } from "./useAuthContext";
+/**
+ * A hook that sets up the state of a signUp function, exporting the signUp function
+ * @returns {[signUp, user:object, error:string, pending:boolean]}
+ */
 export const useSignUp = () => {
   const { user, setUser } = useAuthContext();
   const [error, setError] = useState(null);

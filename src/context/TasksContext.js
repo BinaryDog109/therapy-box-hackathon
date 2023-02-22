@@ -1,7 +1,9 @@
 import { createContext } from "react";
 import { useAuthContext } from "../hooks/useAuthContext";
 import { useCollection } from "../hooks/useCollection";
-
+/**
+ * @description A React Context and Context provider that keep track of the tasks list of a user
+*/
 export const TasksContext = createContext();
 export const TasksContextProvider = ({ children }) => {
   const { user } = useAuthContext();

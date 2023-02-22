@@ -1,6 +1,8 @@
 import styles from "./PictureItem.module.css";
 import { fireStorage } from "../../../firebase/config";
-
+/**
+ * @description A sub component for the photos page. Responsible for the "adding image" button and uploading logic
+ */
 export const AddPictureButton = ({ userId, addDoc }) => {
   const handleImageUpload = async (event) => {
     console.log('try to upload')

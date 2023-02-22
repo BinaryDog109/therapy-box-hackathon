@@ -20,6 +20,11 @@ import { PhotosContextProvider } from "./context/PhotosContext";
 import { SportsContextProvider } from "./context/SportsContext";
 import { useEffect, useState } from "react";
 import { Hints } from "./components-public/Hints";
+/**
+ * @description The parent div of the application. 
+ * It only gets rendered after checking user's authentication state
+ * It also combines react router settings for access control
+ */
 // Note: Moved News and Tasks Provider here so that they can get authenticated user object
 function App() {
   const { user, authChecked } = useAuthContext();
@@ -75,6 +80,10 @@ function App() {
     )
   );
 }
+/**
+ * @description A sub-component displayed along with <App />. Users can log out by clicking this component.
+ * Afterwards, users will be redirected to the login page
+ */
 const LogoutButton = () => {
   const [logout, logoutError, pending, user] = useLogout();
   const [errors, setErrors] = useState([]);

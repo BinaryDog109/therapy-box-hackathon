@@ -7,7 +7,10 @@ import { SportsInfo } from "./components/SportsInfo";
 import { TasksInfo } from "./components/TasksInfo";
 import { WeatherInfo } from "./components/WeatherInfo";
 import styles from "./DashboardPage.module.css";
-
+/**
+ * @description A page component that displays the Dashboard. Needs authentication before access.
+ * Its sub-components include many "thunbnail" components, every of which has different look
+ */
 export const DashboardPage = () => {
   const { user, authChecked } = useAuthContext();
   return (
