@@ -1,7 +1,7 @@
 # Therapy-Box Hackathon Project
 
 A dashboard web application built with React and Firebase.
-- To run it, simply run `npm run start` or visit https://personal-dashboard-414ef.web.app/ (30-day access)
+- To run it, simply run `npm i` and then run `npm run start` or visit https://personal-dashboard-414ef.web.app/ (30-day access)
 - File structure:
     - `component-public`: Stores components available for all pages. Currently it is storing the `Hints` component that gets displayed after a CRUD operation is done.
     - `context`: Stores different React Context. A Dashboard cell shares the corresponding context with its internal page. It helps prevent props drilling. Every context has a useXXXContext hook to improve code reuse.
